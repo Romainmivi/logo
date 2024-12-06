@@ -1,0 +1,33 @@
+.image {
+    position: absolute;
+    cursor: pointer;
+}
+
+#logo {
+    max-height: 100px;
+}
+
+#whale {
+    width: 1000px;
+    z-index: -1;
+    display: none;
+}
+
+#shark {
+    width: 500px;
+    z-index: 1;
+    display: none;
+}
+
+.rotate {
+    animation: rotateLogo 4s linear infinite;
+}
+
+@keyframes rotateLogo {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

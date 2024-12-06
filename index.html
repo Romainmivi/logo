@@ -1,0 +1,263 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="index.css">
+<title>coucou</title>
+</head>
+
+<body>
+    <div id="tt" class="logo" >
+        <img id="logo" src="logo.jpg" onclick="quick()">
+    </div>
+    <img id="whale" src="Whale-Transparent.png">
+</body>
+
+<script src="index.js"></script>
+
+</html> -->
+
+<!--
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superposer et déplacer des images transparentes</title>
+    <style>
+        /* Conteneur qui contiendra les images superposées */
+        .container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: #f0f0f0;  /* Juste pour voir les bords de la zone */
+        }
+
+        /* Style commun pour les images */
+        .image {
+            position: absolute;
+            cursor: pointer;  /* Montre un curseur de déplacement */
+        }
+        #image1{
+            max-height: 100px;
+        }
+        #image2{
+            width: 1000px;
+            z-index: -1;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="">
+    <img src="logo.jpg" alt="Image 1" class="image" id="image1" style="top: 400px; left: 800px;">
+    <img src="Whale-Transparent.png" alt="Image 2" class="image" id="image2" style="top: 100px;">
+</div>
+
+<script>
+    
+    let im1 = document.getElementById("image1");
+    let im2 = document.getElementById("image2");
+    im1.addEventListener("click", emptyFunction);
+    im2.addEventListener("click", emptyFunction);
+
+    let p = -900;
+    let j = 400; 
+
+    function emptyFunction() {
+        im2.style.left = p+"px";
+        im2.style.display = "block";
+        moveImage();
+        // moveLogo(im1);
+    }
+
+    async function moveImage() {
+        for (let i = 0; i < 110; i++) {
+            await delay(1);  // Attendre 100 ms (0.1 seconde) avant de passer à l'itération suivante
+            p += 10;
+            im2.style.left = p + "px";  // Déplacer l'image
+        }
+        let rotation = 10;
+        for (let i = 0; i < 110; i++) {
+            await delay(1);  // Attendre 100 ms (0.1 seconde) avant de passer à l'itération suivante
+            // j -= 10;
+            // im1.style.top = j + "px";  // Déplacer l'image
+            im1.style.transform = "rotate(10deg)";
+
+        }
+    }
+
+    // async function moveLogo(im) {
+        
+    // }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    
+</script>
+
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superposer et déplacer des images transparentes</title>
+    <style>
+        /* Conteneur qui contiendra les images superposées */
+        .container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: #f0f0f0;  /* Juste pour voir les bords de la zone */
+        }
+
+        /* Style commun pour les images */
+        .image {
+            position: absolute;
+            cursor: pointer;  /* Montre un curseur de déplacement */
+        }
+
+        #image1 {
+            max-height: 100px;
+        }
+
+        #image2 {
+            width: 1000px;
+            z-index: -1;
+            display: none;
+        }
+        #image3 {
+            width: 500px;
+            z-index: 1;
+            /* display: none; */
+            /* display: none; */
+        }
+
+        /* Animation de rotation fluide
+        @keyframes rotateLogo {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        } */
+
+        /* Ajout de la classe pour la rotation continue */
+        /* .rotate { */
+            /* animation: rotateLogo 0.3s linear infinite;  2 secondes pour une rotation complète, répétée infiniment */
+        /* } */
+    </style>
+</head>
+<body>
+
+<!-- Conteneur des images superposées -->
+<div class="">
+    <img src="logo.png" alt="Image 1" class="image" id="image1" style="top: 400px; left: 800px;">
+    <img src="Whale-Transparent.png" alt="Image 2" class="image" id="image2" style="top: 100px;">
+    <img src="shark.png" alt="Image 3" class="image" id="image3">
+</div>
+
+<script>
+
+    let p = -900;
+    let jtop = 400;
+    let jleft = 800;
+
+    let im1 = document.getElementById("image1");
+    let im2 = document.getElementById("image2");
+    let img3 = document.getElementById("image3");
+    im1.addEventListener("click", emptyFunction);
+    let pshark = document.documentElement.scrollWidth;
+    img3.style.left = pshark+"px";
+    img3.style.top = jtop-40+"px";
+    // im2.addEventListener("click", emptyFunction);
+
+    function emptyFunction() {
+        im2.style.left = p + "px";
+        im2.style.display = "block";
+        moveImage();
+        // Déclenche l'animation de rotation de l'image
+    }
+
+    let rot=0.3;
+
+    async function moveImage() {
+        for (let i = 0; i < 110; i++) {
+            await delay(1);  // Attendre 1 ms (0.001 seconde) avant de passer à l'itération suivante
+            p += 10;
+            im2.style.left = p + "px";  // Déplacer l'image
+        }
+        createRotationAnimation(rot, 'linear', 360);  // 4 secondes, linéaire, 360° de rotation
+        im1.classList.add("rotate");
+
+        for (let i = 0; i < 110; i++) {
+            await delay(10);  // Attendre 1 ms (0.001 seconde) avant de passer à l'itération suivante
+            jtop -= 10;
+            jleft += 10;
+            im1.style.top = jtop + "px";  // Déplacer l'image
+            im1.style.left = jleft + "px";  // Déplacer l'image
+            if(jtop < 10)break;
+        }
+        for (let i = 0; i < 110; i++) {
+            await delay(10);  // Attendre 1 ms (0.001 seconde) avant de passer à l'itération suivante
+            jtop += 10;
+            jleft += 10;
+            im1.style.top = jtop + "px";  // Déplacer l'image
+            im1.style.left = jleft + "px";  // Déplacer l'image
+            if(jtop >= 400)break;
+        }
+        for (let i = 0; i < 110; i++) {
+            await delay(10);  // Attendre 1 ms (0.001 seconde) avant de passer à l'itération suivante
+            jleft -= 11;
+            p -= 11;
+            pshark -= 14;
+            im1.style.left = jleft + "px";  // Déplacer l'image
+            im2.style.left = p + "px";  // Déplacer l'image
+            img3.style.left = pshark+"px";
+            if(jtop < 10)break;
+            rot += 0.01;
+            createRotationAnimation(rot, 'linear', 360);  // 4 secondes, linéaire, 360° de rotation
+            im1.classList.add("rotate");
+        }
+        createRotationAnimation(0, 'linear', 0);  // 4 secondes, linéaire, 360° de rotation
+
+    }
+
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function createRotationAnimation(duration, timingFunction, angle) {
+        const styleSheet = document.styleSheets[0];  // Accède à la première feuille de style
+        const animationName = 'rotateLogo';
+
+        // Crée la règle @keyframes pour la rotation dynamique
+        const keyframes = `
+            @keyframes ${animationName} {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(${angle}deg);
+                }
+            }
+        `;
+
+        // Ajoute la règle @keyframes à la feuille de style
+        styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+        // Applique l'animation à l'élément image1
+        im1.style.animation = `${animationName} ${duration}s ${timingFunction} infinite`;
+    }
+
+</script>
+
+</body>
+</html>
+
