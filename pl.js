@@ -60,11 +60,56 @@
         }
         createRotationAnimation(0, 'linear', 0);
         explosion("shark_e.png");
+        await delay(1);
+        let diag = document.getElementById("dialog");
+        diag.style.left = parseInt(im1.style.left, 10)+30+"px";
+        diag.style.top = parseInt(im1.style.top, 10)-120+"px";
+        diag.style.display = "block";
     }
 
-    function explosion(s){
-        document.getElementById("shark").src=s;
+    function explosion(s) {
+        let tmp = document.getElementById("shark");
+        tmp.style.display = "none";  // Masquer le requin central
+    
+        let posl = parseInt(tmp.style.left, 10);  // Récupère la position actuelle de gauche
+        let post = parseInt(tmp.style.top, 10);   // Récupère la position actuelle de haut
+    
+        // Les éléments de requin
+        let s1 = document.getElementById("shark1");
+        let s2 = document.getElementById("shark2");
+        let s3 = document.getElementById("shark3");
+        let s4 = document.getElementById("shark4");
+        let s5 = document.getElementById("shark5");
+        let s6 = document.getElementById("shark6");
+    
+        // Distance entre chaque requin
+        const distance = 100; // Modifiez cette valeur pour ajuster l'espacement entre les requins
+    
+        // Afficher les requins
+        s1.style.display = "block";
+        s2.style.display = "block";
+        s3.style.display = "block";
+        s4.style.display = "block";
+        s5.style.display = "block";
+        s6.style.display = "block";
+    
+        // Appliquer les animations en définissant leur position finale avec la transition
+        s1.style.left = (posl - distance * 2) + "px";  // Premier requin à gauche
+        s2.style.left = (posl - distance) + "px";      // Deuxième requin à gauche
+        s3.style.left = posl + "px";                   // Troisième requin à la position initiale
+        s4.style.left = (posl + distance) + "px";      // Quatrième requin à droite
+        s5.style.left = (posl + distance * 2) + "px";  // Cinquième requin plus à droite
+        s6.style.left = (posl + distance * 3) + "px";  // Sixième requin encore plus à droite
+    
+        // Appliquer un léger décalage vertical (top) pour que les requins soient également écartés verticalement
+        s1.style.top = (post - distance) + "px"; // Le premier requin va légèrement plus haut
+        s2.style.top = (post - distance) + "px"; // Le deuxième requin un peu plus haut
+        s3.style.top = post + distance + "px"; // Le troisième requin reste au niveau de départ
+        s4.style.top = (post + distance / 2) + "px"; // Le quatrième requin un peu plus bas
+        s5.style.top = (post + distance*-1) + "px"; // Le cinquième requin plus bas
+        s6.style.top = (post + distance * 2) + "px"; // Le sixième requin encore plus bas
     }
+    
 
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
